@@ -20,7 +20,7 @@ Route::get('/order-count-by-order-id/{id}', function (Request $request, $id) {
         'X-Shopify-Access-Token' => $token,
         'Content-Type' => 'application/json',
     ])->get("https://$shop/admin/api/2023-07/orders/$id.json");
-
+    dd($orderResponse->json());
     if (!$orderResponse->ok()) {
         return response()->json(['error' => 'Failed to fetch order'], 500);
     }
