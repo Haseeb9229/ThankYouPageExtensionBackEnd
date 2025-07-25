@@ -12,7 +12,7 @@ Route::get('/order-count-by-order-id/{id}', function (Request $request, $id) {
         return response()->json(['error' => 'id is required'], 400);
     }
 
-    $shop = "checkoutextension12.myshopify.com";
+    $shop = "8b4e7e-9b.myshopify.com";
     $token = env('SHOPIFY_API_TOKEN');
 
     // Step 1: Get the order to extract customer ID
@@ -20,7 +20,7 @@ Route::get('/order-count-by-order-id/{id}', function (Request $request, $id) {
         'X-Shopify-Access-Token' => $token,
         'Content-Type' => 'application/json',
     ])->get("https://$shop/admin/api/2023-07/orders/$id.json");
-    dd($orderResponse->json());
+
     if (!$orderResponse->ok()) {
         return response()->json(['error' => 'Failed to fetch order'], 500);
     }
